@@ -1,0 +1,54 @@
+package EmployeeMenu;
+
+import java.util.Scanner;
+
+/**
+ * @author Bill Petrus
+ *
+ */
+public class Date {
+	
+	private int day;
+	private int month;
+	private int year;
+	
+	public Date() {
+		this.day = 0;
+		this.month = 0;
+		this.year = 0;
+	}
+	
+	public Date(int day, int month, int year) {
+		super();
+		this.day = day;
+		this.month = month;
+		this.year = year;
+	}
+	
+	public Date(Date date) {
+		super();
+		this.day = date.day;
+		this.month = date.month;
+		this.year = date.year;
+	}
+
+	@Override
+	public String toString() {
+		return day + "/" + month + "/" + year;
+	}
+	
+	public void input() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter Your Date of Birth");
+		System.out.println("Day : ");
+		day = scan.nextInt();
+		
+		System.out.println("Month : ");
+		month = scan.nextInt();
+		
+		System.out.println("Year : ");
+		year = scan.nextInt();
+		
+	}
+	
+}

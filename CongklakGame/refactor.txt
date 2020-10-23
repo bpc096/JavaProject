@@ -1,0 +1,53 @@
+1.
+source: class Computer, class EasyComputer, ExpertComputer, HardComputer, MediumComputer
+smell: Unnecessary Hierarchy
+problem: subclass EasyComputer, MediumComputer, HardComputer memiliki 
+smell code yang sama persis, seharusnya bisa dibuat menjadi 1 validasi saja.
+solution: membuat semua keempat level permainan, menjadi 1 method dengan berbeda level 
+code baris 109 - 117) di kelas di Computer saja().
+
+2.
+source: class MainMenu, method private GameMenu dan howToPlayMenu.
+smell: Leaky Encapsulation
+problem: class MainMenu mempunyai objek yang menunjuk ke kelas lain yang tidak diketahui
+		 menyebabkan kebocoran data dari objek ini (kelas GameMenu Baris 32-37) .
+solution: membuat setter dan getter untuk validasi gameMenu dan howToPlayMenu 
+		  di kelas yang sama.
+
+3.
+source: class GameMenu 
+smell: Deficient Encapsulation
+problem: kebocoran tipe data untuk level setiap permainan game congklak (baris 14-17)
+karena access modifier yang salah
+solution: mengganti access modifier public menjadi protected.
+
+4.
+source: class PlayerMenu 
+smell: Deficient Encapsulation
+problem: kebocoran tipe data di variabel String label karena access modifier yang tidak
+constant / Non-compliant
+solution: menambahkan keyword final agar akses tipe data tidak leak(bocor).
+
+5.
+source: class GameMenu, method play()
+smell: Long Method, Large Class (fowler)
+problem: method play memiliki cognitive complexity yang tinggi, sehingga sulit untuk membaca method tersebut.
+solution: extract Method menjadi level() dan gameResult().
+
+6.
+source: class Player method override toString()
+smell: Primitive Obsession (fowler)
+problem: method toString di class String tidak boleh concatenated (digabungkan) menggunakan '+' dalam satu looping
+solution: mengganti kelas String menjadi StringBuilder agar lebih objek(OOP).
+
+7.
+source: class PlayerMenu method override createComputer()
+smell: Duplicate Code (fowler)
+problem: switch statement memiliki kemiripan code yang sama persis setiap levelnya
+solution: mengelompokan setiap level menjadi objek, kemudian men-generate getter setter untuk masing-masing level.
+
+8.
+source: class GameMenu
+smell: Large Class (fowler)
+problem: beberapa tipe data begitu banyak dalam 1 kelas PlayerMenu
+solution: extract interface 'Gameable' agar beberapa tipe data mempunyai interface sendiri (tidak berubah-ubah).
